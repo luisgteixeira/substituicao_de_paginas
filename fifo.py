@@ -21,10 +21,9 @@ class FIFO(object):
         # Lista de molduras presentes na RAM
         frames = []
 
-        i = 0
         while len(inputs) > 0:
             # Verifica se a pagina ja esta em uma das molduras
-            if not (inputs[i] in frames):
+            if not (inputs[0] in frames):
                 # Soma uma falta de pagina
                 self.output += 1
 
@@ -34,5 +33,5 @@ class FIFO(object):
                     frames.pop(0)
 
                 # Adiciona a pagina a ultima que chegou
-                frames.append(inputs[i])
-            inputs.pop(i)
+                frames.append(inputs[0])
+            inputs.pop(0)

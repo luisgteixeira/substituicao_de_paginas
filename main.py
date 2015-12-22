@@ -3,7 +3,7 @@
 
 import sys, getopt
 from fifo import *
-# from otm import *
+from otm import *
 # from lru import *
 
 def main(argv):
@@ -19,11 +19,11 @@ def main(argv):
         lines = arq.readlines()
 
         fifo = FIFO(lines)
-        # otm = OTM(lines)
+        otm = OTM(lines)
         # lru = LRU(lines)
 
         print('FIFO', fifo.output)
-        # print('OTM', otm.output)
+        print('OTM', otm.output)
         # print('LRU', lru.output)
 
         # Fecha o arquivo

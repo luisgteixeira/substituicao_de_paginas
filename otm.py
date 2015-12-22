@@ -27,7 +27,7 @@ class OTM(object):
                 # Soma uma falta de pagina
                 self.output += 1
 
-                # Verifica se a lista ja foi iniciada
+                # Verifica se a lista esta cheia
                 if len(frames) == frames_available:
                     # Copia de 'inputs' para nao modificar a lista original
                     aux = copy.deepcopy(inputs)
@@ -47,6 +47,7 @@ class OTM(object):
                                 identify_number[i] = j
                                 i += 1
                                 break
+                        i += 1
 
 
                     index = frames.index(max(identify_number))

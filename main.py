@@ -4,7 +4,7 @@
 import sys, getopt
 from fifo import *
 from otm import *
-# from lru import *
+from lru import *
 
 def main(argv):
     # Recebe o nome do arquivo de entrada
@@ -20,11 +20,11 @@ def main(argv):
 
         fifo = FIFO(lines)
         otm = OTM(lines)
-        # lru = LRU(lines)
+        lru = LRU(lines)
 
         print('FIFO', fifo.output)
         print('OTM', otm.output)
-        # print('LRU', lru.output)
+        print('LRU', lru.output)
 
         # Fecha o arquivo
         arq.close()

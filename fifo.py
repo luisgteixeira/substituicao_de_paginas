@@ -27,7 +27,7 @@ class FIFO(object):
                 # Soma uma falta de pagina
                 self.output += 1
 
-                # Verifica se a lista ja foi iniciada
+                # Verifica se a lista esta cheia
                 if len(frames) == frames_available:
                     # Retira a primeira pagina que chegou
                     frames.pop(0)

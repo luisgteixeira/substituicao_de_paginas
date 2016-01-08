@@ -49,7 +49,7 @@ class OTM(object):
                                 break
                         i += 1
 
-
+                    # Indice da pagina que demorara mais execucoes para sera referenciada
                     index = frames.index(max(identify_number))
                     frames.pop(index)
 

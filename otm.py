@@ -42,17 +42,21 @@ class OTM(object):
                     # Percorre todos as paginas que estao nas molduras
                     while i < frames_available:
                         for j,a in enumerate(aux):
-                            # Salva a posicao da proxima requisicao de cada pagina que se encontra nas molduras
                             if a == identify_number[i]:
+                                # Salva a posicao da proxima requisicao de cada pagina que se encontra nas molduras
                                 identify_number[i] = j
-                                i += 1
                                 break
+                            elif j == (len(aux) - 1):
+                                # Pagina nao sera referenciada futuramente
+                                identify_number[i] = -1
                         i += 1
 
-                    # Indice da pagina que demorara mais execucoes para sera referenciada
-                    index = frames.index(max(identify_number))
-                    frames.pop(index)
+                    if aux:
+                        # Retorna pagina que demorara mais execucoes para sera referenciada
+                        index = aux[max(identify_number)]
+                        # Apaga pagina que sera referenciada com maior numero de execucoes a frente
+                        frames.remove(index)
 
-                # Adiciona a pagina a ultima que chegou
+                # Adiciona a ultima pagina que chegou
                 frames.append(inputs[0])
             inputs.pop(0)

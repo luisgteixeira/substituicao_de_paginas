@@ -21,6 +21,9 @@ class LRU(object):
         # Lista de molduras presentes na RAM
         frames = []
 
+        # Lista com as paginas que ja foram utilizadas
+        pages_used = []
+
         while len(inputs) > 0:
             # Verifica se a pagina ja esta em uma das molduras
             if not (inputs[0] in frames):
@@ -29,30 +32,40 @@ class LRU(object):
 
                 # Verifica se a lista esta cheia
                 if len(frames) == frames_available:
-                    # Copia de 'inputs' para nao modificar a lista original
-                    aux = copy.deepcopy(inputs)
-                    # Retorna apenas as paginas que ainda nao foram atendidas
-                    aux = aux[1:]
-
                     # Copia de 'frames' para nao modificar a lista original
                     identify_number = copy.deepcopy(frames)
 
                     # Contador auxiliar para calcular o numero de identificacao de cada pagina que se encontra nas molduras
                     i = 0
+
                     # Percorre todos as paginas que estao nas molduras
                     while i < frames_available:
-                        for j,a in enumerate(aux):
-                            # Salva a posicao da proxima requisicao de cada pagina que se encontra nas molduras
-                            if a == identify_number[i]:
+
+                        # Contador auxiliar para encontrar a pagina usada a mais tempo
+                        j = len(pages_used) - 1
+
+                        while j >= 0:
+                            # Procura pagina atual na lista das paginas antigas
+                            if pages_used[j] == identify_number[i]:
                                 identify_number[i] = j
-                                i += 1
                                 break
+                            # Pagina nao foi referenciada anteriormente
+                            elif j == 0:
+                                identify_number[i] = 9999999
+
+                            j -= 1
+
                         i += 1
 
+                    # Retorna pagina utilizada a mais tempo
+                    page_remove = pages_used[min(identify_number)]
 
-                    index = frames.index(max(identify_number))
-                    frames.pop(index)
+                    # Remove pagina utilizada a mais tempo
+                    frames.remove(page_remove)
 
                 # Adiciona a pagina a ultima que chegou
                 frames.append(inputs[0])
+
+            # Adiciona as paginas utilizadas
+            pages_used.append(inputs[0])
             inputs.pop(0)

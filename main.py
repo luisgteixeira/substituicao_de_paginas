@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import sys, getopt
+import sys
 from fifo import *
 from otm import *
 from lru import *

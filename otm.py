@@ -52,10 +52,16 @@ class OTM(object):
                         i += 1
 
                     if aux:
-                        # Retorna pagina que demorara mais execucoes para sera referenciada
-                        index = aux[max(identify_number)]
+
+                        if -1 in identify_number:
+                            # Apaga pagina que nao vai ser referenciada futuramente
+                            value = frames[identify_number.index(-1)]
+                        else:
+                            # Retorna pagina que demorara mais execucoes para sera referenciada
+                            value = aux[max(identify_number)]
+
                         # Apaga pagina que sera referenciada com maior numero de execucoes a frente
-                        frames.remove(index)
+                        frames.remove(value)
 
                 # Adiciona a ultima pagina que chegou
                 frames.append(inputs[0])
